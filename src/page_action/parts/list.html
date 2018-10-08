@@ -1,0 +1,71 @@
+<div layout="column" flex ng-class="{'activeMenu': !!menu}">
+<span ng-click="aply();" class="fakeButton" ng-if="!menu"></span>
+<md-tabs md-border-bottom layout="column" flex>
+    <md-tab ng-repeat="(key, type) in messages" label="{{key}}s" md-on-select="current = key">
+        <md-content style="overflow: visible;">
+            <md-subheader class="md-primary md-whiteframe-1dp">
+                <div layout="row" flex="initial" layout-align="center center">
+                    <img class="md-avatar" style="margin-right: 16px; visibility: hidden;">
+    		      	<md-checkbox class="image-checkbox md-secondary" ng-model="type.selectedAll" flex="initial"></md-checkbox>
+    		      	<div flex="initial"> 
+    		      		Name 
+    		      		<!-- <md-icon ng-click="type.show = !type.show" ng-if="!type.show" md-svg-icon="arrow-drop-down"></md-icon> -->
+    		  	  		<!-- <md-icon ng-click="type.show = !type.show" ng-if="type.show" md-svg-icon="arrow-drop-up"></md-icon> -->
+    		      	</div>
+    		      	<!-- <div flex="initial"> 
+    		      		Size 
+    		      		<md-icon ng-click="type.show = !type.show" ng-if="!type.show" md-svg-icon="arrow-drop-down"></md-icon>
+    		  	  		<md-icon ng-click="type.show = !type.show" ng-if="type.show" md-svg-icon="arrow-drop-up"></md-icon>
+    		      	</div> -->
+                    <div flex></div>
+    		      	<div flex="initial">
+                        <md-button class="md-icon-button" ng-click="bulkDownload(current)">
+                            <md-tooltip md-delay="900" md-direction="left">Download selected</md-tooltip>
+                            <md-icon class="md-secondary" md-svg-src="img/icons/cloud_download.svg"></md-icon>
+                        </md-button>
+    		      	</div>
+                </div>
+		    </md-subheader>
+
+            <md-list>
+                <md-list-item ng-repeat="x in type" ng-class="x.selected?'selected-to-download':'notselected-to-download'">
+                    <img alt="{{ x.url }}" ng-src="{{ x.face }}" class="md-avatar" />
+                    <md-checkbox class="md-secondary image-checkbox" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
+                    <p>{{ x.tabId }}</p>
+                    <md-icon ng-click="download(x)" class="md-secondary" md-svg-src="img/icons/download.svg">
+                        <md-tooltip md-delay="900" md-direction="left">Download it</md-tooltip>
+                    </md-icon>
+                    <md-icon ng-click="removeItem(key, $index)" class="md-secondary" md-svg-src="img/icons/ic_close_24px.svg">
+                        <md-tooltip md-delay="900" md-direction="left">Remove item from the list</md-tooltip>
+                    </md-icon>
+                </md-list-item>
+            </md-list>
+
+        </md-content>
+    </md-tab>
+</md-tabs>
+</div>
+
+<md-fab-toolbar md-open="!1" md-direction="left" style="position: absolute; width: 100%;">
+            <md-fab-trigger class="align-with-text">
+                <md-button aria-label="menu" class="md-fab md-primary">
+                    <md-icon md-svg-src="img/icons/menu.svg"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+            <md-toolbar>
+                <md-fab-actions class="md-toolbar-tools" flex>
+                    <!-- <md-button aria-label="comment" class="md-icon-button">
+                        <md-icon md-svg-src="img/icons/ic_comment_24px.svg"></md-icon>
+                    </md-button> -->
+                    <!-- <md-button aria-label="label" class="md-icon-button">
+                        <md-icon md-svg-src="img/icons/ic_label_24px.svg"></md-icon>
+                    </md-button> -->
+                    <md-button aria-label="photo" class="md-icon-button">
+                        <md-icon md-svg-src="img/icons/ic_photo_24px.svg"></md-icon>
+                    </md-button>
+
+                    <span style="margin-right: auto;">Universal Downloader {{version}} (Beta)</span>
+                    
+                </md-fab-actions>
+            </md-toolbar>
+        </md-fab-toolbar>

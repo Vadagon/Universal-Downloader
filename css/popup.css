@@ -1,0 +1,140 @@
+body, html{
+	overflow: hidden;
+	width: 500px;
+	max-height: 500px;
+	background: transparent;
+	height: 500px;
+	min-height: 500px;
+}
+body > div{
+	max-height: 500px;
+	height: 500px;
+	min-height: 500px;
+	/*max-height: 500px;*/
+}
+#header{
+	/*border-bottom: 1px solid black;*/
+}
+#logo{
+	width: 300px;
+    padding: 10px;
+    /*padding-bottom: 0;*/
+}
+
+
+
+.md-button.md-icon-button{
+	margin: 0;
+}
+img.md-avatar{
+	height: 32px !important;
+	width: 32px !important;
+	border-radius: 0 !important;
+}
+.md-list-item-inner{
+	position: relative;
+	/*margin: 0 16px !important;*/
+	/*padding: 0 !important;*/
+}
+.md-subheader-inner{
+	/*width: 100%;*/
+	padding: 0 16px !important;
+}
+.md-subheader-content{
+	/*padding-left: 47px !important;*/
+}
+.image-checkbox{
+	position: absolute;
+	left: 5px;
+}
+md-list-item .image-checkbox{
+	left: 22px;
+}
+.listdemoListControls md-divider {
+  margin-top: 0;
+  margin-bottom: 0; }
+
+.listdemoListControls md-list {
+  padding-top: 0; }
+
+.listdemoListControls md-list-item > p,
+.listdemoListControls md-list-item > .md-list-item-inner > p,
+.listdemoListControls md-list-item .md-list-item-inner > p,
+.listdemoListControls md-list-item .md-list-item-inner > .md-list-item-inner > p {
+  -webkit-user-select: none;
+  /* Chrome all / Safari all */
+  -moz-user-select: none;
+  /* Firefox all */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Likely future */ }
+
+
+
+
+
+
+
+.selected-to-download img{
+	transition: .4s ease-in;
+	filter:grayscale(100%);
+	opacity: .6;
+}
+.selected-to-download md-checkbox{
+	opacity: 1;
+}
+.notselected-to-download md-checkbox{
+	opacity: 0;
+}
+.notselected-to-download:hover md-checkbox{
+	opacity: 1;
+}
+.notselected-to-download img{
+	transition: .4s ease-in;
+}
+.notselected-to-download:hover img{
+	filter:grayscale(100%);
+	opacity: .6;
+}
+
+
+.tabContent{
+	overflow: visible
+}
+.tabContent > div{
+	width: 100%; 
+	justify-content: space-between; 
+	position: sticky; 
+	top: 0; 
+	padding: 5px 16px;
+}
+
+
+
+
+.md-fab-toolbar-wrapper, md-fab-actions, md-toolbar, md-fab-toolbar md-fab-actions{
+	min-height: 40px !important;
+	height: 48px !important;
+}
+md-fab-toolbar md-fab-trigger button, md-fab-toolbar md-fab-trigger button > div{
+	height: 36px !important;
+	width: 36px !important;
+}
+md-fab-toolbar md-fab-actions > div:nth-last-child(1){
+	margin-right: auto;
+}
+
+
+
+.activeMenu md-tabs{
+	z-index: 1 !important;
+}
+.fakeButton{
+    position: absolute;
+	top: 6px;
+    right: 8px;
+    width: 36px;
+    height: 36px;
+    z-index: 100;
+}
