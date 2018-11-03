@@ -27,7 +27,7 @@
                 </div>
 		    </md-subheader>
 
-            <md-list>
+            <md-list ng-if="key!='image'">
                 <md-list-item ng-repeat="x in type" ng-class="x.selected?'selected-to-download':'notselected-to-download'">
                     <img alt="{{ x.url }}" ng-src="{{ x.face }}" class="md-avatar" />
                     <md-checkbox class="md-secondary image-checkbox" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
@@ -38,6 +38,53 @@
                     <md-icon ng-click="removeItem(key, $index)" class="md-secondary" md-svg-src="img/icons/ic_close_24px.svg">
                         <md-tooltip md-delay="900" md-direction="left">Remove item from the list</md-tooltip>
                     </md-icon>
+                </md-list-item>
+            </md-list>
+            <md-list ng-if="key=='image'" class="imageGrid">
+                <div>
+                    <div ng-repeat="x in type | limitTo:(window.Math.round(type.length/3))">
+                        <img src="{{ x.url }}">
+                        <div class="imageHoverGlass"></div>
+                        <md-checkbox class="md-secondary image-checkbox" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
+                        <p>{{ x.name }}</p>
+                        <md-icon style="color: white;" ng-click="download(x)" class="md-secondary" md-svg-src="img/icons/download.svg">
+                            <md-tooltip md-delay="900" md-direction="right">Download it</md-tooltip>
+                        </md-icon>
+                        <md-icon style="color: white;" ng-click="removeItem(key, $index)" class="md-secondary" md-svg-src="img/icons/ic_close_24px.svg">
+                            <md-tooltip md-delay="900" md-direction="right">Remove item from the list</md-tooltip>
+                        </md-icon>
+                    </div>
+                </div>
+                <div>
+                    <div ng-repeat="x in type | limitTo:(window.Math.round(type.length/3)):(window.Math.round(type.length/3))">
+                        <img src="{{ x.url }}">
+                        <div class="imageHoverGlass"></div>
+                        <md-checkbox class="md-secondary image-checkbox" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
+                        <p>{{ x.name }}</p>
+                        <md-icon style="color: white;" ng-click="download(x)" class="md-secondary" md-svg-src="img/icons/download.svg">
+                            <md-tooltip md-delay="900" md-direction="left">Download it</md-tooltip>
+                        </md-icon>
+                        <md-icon style="color: white;" ng-click="removeItem(key, $index)" class="md-secondary" md-svg-src="img/icons/ic_close_24px.svg">
+                            <md-tooltip md-delay="900" md-direction="left">Remove item from the list</md-tooltip>
+                        </md-icon>
+                    </div>
+                </div>
+                <div>
+                    <div ng-repeat="x in type | limitTo:(window.Math.round(type.length/3)):(window.Math.round(type.length/3*2))">
+                        <img src="{{ x.url }}">
+                        <div class="imageHoverGlass"></div>
+                        <md-checkbox class="md-secondary image-checkbox" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
+                        <p>{{ x.name }}</p>
+                        <md-icon style="color: white;" ng-click="download(x)" class="md-secondary" md-svg-src="img/icons/download.svg">
+                            <md-tooltip md-delay="900" md-direction="left">Download it</md-tooltip>
+                        </md-icon>
+                        <md-icon style="color: white;" ng-click="removeItem(key, $index)" class="md-secondary" md-svg-src="img/icons/ic_close_24px.svg">
+                            <md-tooltip md-delay="900" md-direction="left">Remove item from the list</md-tooltip>
+                        </md-icon>
+                    </div>
+                </div>
+                <md-list-item ng-repeat="x in type" ng-class="x.selected?'selected-to-download':'notselected-to-download'">
+                    
                 </md-list-item>
             </md-list>
 

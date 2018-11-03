@@ -138,3 +138,59 @@ md-fab-toolbar md-fab-actions > div:nth-last-child(1){
     height: 36px;
     z-index: 100;
 }
+
+
+.imageGrid > div{
+	width: 32%;
+	display: inline-block;
+	vertical-align:top;
+}
+.imageGrid > div > div{
+	width: 100%;
+	height: auto; 
+	position: relative;
+}
+.imageGrid > div > div:hover .imageHoverGlass{
+	background-color: rgba(0,0,0,.4);
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+}
+.imageGrid > div > div:hover md-icon, .imageGrid > div > div:hover p, .imageGrid > div > div:hover md-checkbox{
+	background: none !important;
+	visibility: visible;
+}
+.imageGrid img{
+	height: auto;
+	width: 100%;
+}
+
+.imageGrid md-checkbox{
+	top: 5px;
+	visibility: hidden;
+}
+.imageGrid p{
+	background-color: rgba(0,0,0,.5);
+	color: white;
+	position: absolute;
+	bottom: -10px;
+	width: 100%;
+	padding: 5px;
+	box-sizing: border-box;
+}
+.imageGrid md-icon{
+	visibility: hidden;
+	right: 30px;
+    top: 5px;
+    position: absolute;
+}
+.imageGrid md-icon:nth-child(2n){
+	right: 5px;
+}
+.imageGrid md-checkbox:not(.md-checked) .md-icon{
+	border-color: white;
+}

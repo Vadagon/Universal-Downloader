@@ -34,6 +34,7 @@ angular.module('main', ["ngMaterial", "material.svgAssetsCache", "ngRoute"])
 			res.list.forEach(function(e){
                 if(!$scope.messages[e.type]) $scope.messages[e.type] = [];
                 e.face  = e.type == 'image' ? e.url : img;
+                e.name = new URL(e.url).pathname.split('/')[new URL(e.url).pathname.split('/').length-1].replace(/(.*)\.[^.]+$/gmi, '').replace(/(-|_|\.)/gmi, ' ');
                 e.selected = !0;
 				$scope.messages[e.type].push(e);
 			})
