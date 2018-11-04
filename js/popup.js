@@ -55,7 +55,8 @@ angular.module('main', ["ngMaterial", "material.svgAssetsCache", "ngRoute"])
         links = $scope.messages[e];
         links = links.filter(t=>t.selected).map(t=>t.url);
         console.log(links)
-        chrome.tabs.create({ url: chrome.runtime.getURL('/src/page_action/loader.html')+'?json='+JSON.stringify( links ) });
+        chrome.runtime.sendMessage({action: "universal", data: {links: links}});
+        // chrome.tabs.create({ url: chrome.runtime.getURL('/src/page_action/loader.html')+'?json='+JSON.stringify( links ) });
     }
 
 })

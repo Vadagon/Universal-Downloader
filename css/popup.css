@@ -141,9 +141,11 @@ md-fab-toolbar md-fab-actions > div:nth-last-child(1){
 
 
 .imageGrid > div{
-	width: 32%;
-	display: inline-block;
-	vertical-align:top;
+    width: 32%;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: -3px;
+    margin-left: 5px;
 }
 .imageGrid > div > div{
 	width: 100%;
@@ -181,6 +183,9 @@ md-fab-toolbar md-fab-actions > div:nth-last-child(1){
 	width: 100%;
 	padding: 5px;
 	box-sizing: border-box;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: clip;
 }
 .imageGrid md-icon{
 	visibility: hidden;

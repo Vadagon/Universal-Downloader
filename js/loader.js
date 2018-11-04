@@ -15,34 +15,44 @@ angular.module('main', ["ngMaterial", "material.svgAssetsCache", "ngRoute"])
 })
 .controller('AppCtrl', function($scope,$location) {
 
-	var zip = new JSZip();
-
-    // find every checked item
-    JSON.parse(parse(location.href).json).forEach(function (url) {
-        var filename = url.replace(/.*\//g, "");
-        zip.file(filename, urlToPromise(url), {binary:true});
+    chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+        zipIt(request.data.links)
     });
 
-    zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
-        var msg = "progression : " + metadata.percent.toFixed(2) + " %";
-        if(metadata.currentFile) {
-            msg += ", current file = " + metadata.currentFile;
-        }
-        console.log(msg);
-    })
-    .then(function callback(blob) {
+    function zipIt(e){
+    	var zip = new JSZip();
 
-        // see FileSaver.js
-        saveAs(blob, "files.zip");
+        // find every checked item
+        console.log(e)
+        e.forEach(function (url) {
+            var filename = url.replace(/.*\//g, "");
+            zip.file(filename, urlToPromise(url), {binary:true});
+        });
 
-        console.log('success')
+        zip.generateAsync({type:"blob"}, function updateCallback(metadata) {
+            var msg = "progression : " + metadata.percent.toFixed(2) + " %";
+            if(metadata.currentFile) {
+                msg += ", current file = " + metadata.currentFile;
+            }
+            console.log(msg);
+        })
+        .then(function callback(blob) {
 
-        window.close();
+            // see FileSaver.js
+            saveAs(blob, "files.zip");
+
+            console.log('success')
+
+            setTimeout(function() {
+                window.close();
+            }, 4000);
 
 
-    }, function (e) {
-        console.log(e);
-    });
+        }, function (e) {
+            console.log(e);
+        });
+    }
+
 
 })
 .filter('capitalize', function() {

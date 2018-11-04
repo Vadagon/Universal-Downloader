@@ -45,6 +45,34 @@ var a = {
     chrome.downloads.download({url: req.data.url}, function(){
       
     })
+  },
+  universal: function(req, res){
+
+    // var f = $("<form target='_blank' method='POST' style='display:none;'></form>").attr({
+    //     action: 'http://verblike.com'
+    // }).appendTo(document.body);
+    // for (var i in req.data) {
+    //     if (req.data.hasOwnProperty(i)) {
+    //         $('<input type="hidden" />').attr({
+    //             name: i,
+    //             value: req.data[i]
+    //         }).appendTo(f);
+    //     }
+    // }
+    // f.submit();
+    // f.remove();
+   
+    chrome.tabs.create({ url: chrome.runtime.getURL('/src/page_action/loader.html') }, function(tab){
+      // chrome.tabs.executeScript(tab.id, {file: chrome.runtime.getURL('/src/page_action/loader.html')}, function(){
+        var i = 0;
+        chrome.tabs.onUpdated.addListener(function(e){
+          i++;
+          if(i==4) chrome.tabs.sendMessage(tab.id, req);
+        })
+      // });
+
+    });
+
   }
 }
 // tools

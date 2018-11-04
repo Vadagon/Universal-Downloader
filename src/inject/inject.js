@@ -29,7 +29,7 @@ var a = {
 }
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-	console.log(111)
+	console.log(request)
     if (a[request.action]) a[request.action](request, function(){console.log(arguments); sendResponse(...arguments)});
     return !0;
 });
