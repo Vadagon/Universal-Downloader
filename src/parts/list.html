@@ -6,7 +6,7 @@
             <md-subheader class="md-primary md-whiteframe-1dp">
                 <div layout="row" flex="initial" layout-align="center center">
                     <img class="md-avatar" style="margin-right: 16px; visibility: hidden;">
-    		      	<md-checkbox class="image-checkbox md-secondary" ng-model="type.selectedAll" flex="initial"></md-checkbox>
+    		      	<md-checkbox aria-label="add to download list" class="image-checkbox md-secondary" ng-model="type.selectedAll" flex="initial"></md-checkbox>
     		      	<div flex="initial"> 
     		      		Name 
     		      		<!-- <md-icon ng-click="type.show = !type.show" ng-if="!type.show" md-svg-icon="arrow-drop-down"></md-icon> -->
@@ -30,7 +30,7 @@
             <md-list ng-if="key!='image'">
                 <md-list-item ng-repeat="x in type" ng-class="x.selected?'selected-to-download':'notselected-to-download'">
                     <img alt="{{ x.url }}" ng-src="{{ x.face }}" class="md-avatar" />
-                    <md-checkbox class="md-secondary image-checkbox" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
+                    <md-checkbox aria-label="add to download list" class="md-secondary image-checkbox" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
                     <p>{{ x.tabId }}</p>
                     <md-icon ng-click="download(x)" class="md-secondary" md-svg-src="img/icons/download.svg">
                         <md-tooltip md-delay="900" md-direction="left">Download it</md-tooltip>
@@ -45,7 +45,7 @@
                     <div ng-repeat="x in type | limitTo:(window.Math.round(type.length/3))">
                         <img src="{{ x.url }}">
                         <div class="imageHoverGlass"></div>
-                        <md-checkbox class="md-secondary image-checkbox" style="{{x.selected?'visibility: visible !important;':''}}" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
+                        <md-checkbox aria-label="add to download list" class="md-secondary image-checkbox" style="{{x.selected?'visibility: visible !important;':''}}" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
                         <p>{{ x.name }}</p>
                         <md-icon style="color: white;" ng-click="download(x)" class="md-secondary" md-svg-src="img/icons/download.svg">
                             <md-tooltip md-delay="900" md-direction="right">Download it</md-tooltip>
@@ -59,7 +59,7 @@
                     <div ng-repeat="x in type | limitTo:(window.Math.round(type.length/3)):(window.Math.round(type.length/3))">
                         <img src="{{ x.url }}">
                         <div class="imageHoverGlass"></div>
-                        <md-checkbox class="md-secondary image-checkbox" style="{{x.selected?'visibility: visible !important;':''}}" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
+                        <md-checkbox aria-label="add to download list" class="md-secondary image-checkbox" style="{{x.selected?'visibility: visible !important;':''}}" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
                         <p>{{ x.name }}</p>
                         <md-icon style="color: white;" ng-click="download(x)" class="md-secondary" md-svg-src="img/icons/download.svg">
                             <md-tooltip md-delay="900" md-direction="left">Download it</md-tooltip>
@@ -73,7 +73,7 @@
                     <div ng-repeat="x in type | limitTo:(window.Math.round(type.length/3)):(window.Math.round(type.length/3*2))">
                         <img src="{{ x.url }}">
                         <div class="imageHoverGlass"></div>
-                        <md-checkbox class="md-secondary image-checkbox" style="{{x.selected?'visibility: visible !important;':''}}" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
+                        <md-checkbox aria-label="add to download list" class="md-secondary image-checkbox" style="{{x.selected?'visibility: visible !important;':''}}" ng-model="x.selected" ng-checked="type.selectedAll?!0:!1"></md-checkbox>
                         <p>{{ x.name }}</p>
                         <md-icon style="color: white;" ng-click="download(x)" class="md-secondary" md-svg-src="img/icons/download.svg">
                             <md-tooltip md-delay="900" md-direction="left">Download it</md-tooltip>

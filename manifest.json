@@ -4,23 +4,23 @@
   "manifest_version": 2,
   "description": "Download any media (video, music, images) smartly from 99.9% sites",
   "icons": {
-    "16": "icons/icon16.png",
-    "32": "icons/icon32.png",
-    "64": "icons/icon64.png",
-    "128": "icons/icon128.png"
+    "16": "images/icons/icon16.png",
+    "32": "images/icons/icon32.png",
+    "64": "images/icons/icon64.png",
+    "128": "images/icons/icon128.png"
   },
   "default_locale": "en",
   "background": {
     "scripts": [
-      "/js/jquery/jquery.min.js",
-      "src/bg/background.js"
+      "js/jquery/jquery.min.js",
+      "js/background.js"
     ],
     "persistent": true
   },
-  "page_action": {
-    "default_icon": "icons/icon128.png",
+  "browser_action": {
+    "default_icon": "images/icons/icon128.png",
     "default_title": "page action demo",
-    "default_popup": "src/page_action/page_action.html"
+    "default_popup": "src/popup/popup.html"
   },
   "permissions": [
     "*://*/*",
@@ -30,15 +30,16 @@
     "storage", 
     "webRequest"
   ],
+  "minimum_chrome_version": "46",
   "web_accessible_resources": [
     "images/*",
     "css/*",
     "js/*"
   ],
   "commands": {
-    "_execute_page_action": {
+    "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+X"
+        "default": "Alt+X"
       }
     }
   },
@@ -48,7 +49,7 @@
         "*://*/*"
       ],
       "js": [
-        "src/inject/inject.js"
+        "js/inject.js"
       ]
     }
   ]

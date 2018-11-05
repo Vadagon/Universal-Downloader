@@ -6,13 +6,6 @@ angular.module('main', ["ngMaterial", "material.svgAssetsCache", "ngRoute"])
 .config(['$compileProvider', function ($compileProvider) {
     $compileProvider.imgSrcSanitizationWhitelist(/^\s*(https?|local|data|chrome-extension):/);
 }])
-.config(function($mdIconProvider) {
-  $mdIconProvider
-    .iconSet('social', 'img/icons/sets/social-icons.svg', 24)
-    .iconSet('device', 'img/icons/sets/device-icons.svg', 24)
-    .iconSet('communication', 'img/icons/sets/communication-icons.svg', 24)
-    .defaultIconSet('img/icons/sets/core-icons.svg', 24);
-})
 .controller('AppCtrl', function($scope,$location) {
     $scope.menu = !0;
     $scope.window = window;
@@ -69,12 +62,12 @@ angular.module('main', ["ngMaterial", "material.svgAssetsCache", "ngRoute"])
 .config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "/src/page_action/parts/loading.html"
+        templateUrl : "/src/parts/loading.html"
     })
     .when("/list", {
-        templateUrl : "/src/page_action/parts/list.html"
+        templateUrl : "/src/parts/list.html"
     })
     .otherwise({
-        templateUrl : "/src/page_action/parts/loading.html"
+        templateUrl : "/src/parts/loading.html"
     });
 });

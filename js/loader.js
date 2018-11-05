@@ -64,13 +64,13 @@ angular.module('main', ["ngMaterial", "material.svgAssetsCache", "ngRoute"])
 .config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "/src/page_action/parts/loading.html"
+        templateUrl : "/src/parts/loading.html"
     })
     .when("/list", {
-        templateUrl : "/src/page_action/parts/list.html"
+        templateUrl : "/src/parts/list.html"
     })
     .otherwise({
-        templateUrl : "/src/page_action/parts/loading.html"
+        templateUrl : "/src/parts/loading.html"
     });
 });
 

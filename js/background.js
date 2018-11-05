@@ -9,7 +9,7 @@
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if(sender.tab) chrome.pageAction.show(sender.tab.id);
+    // if(sender.tab) chrome.pageAction.show(sender.tab.id);
     if(a[request.action]) a[request.action](request, sendResponse)
   });
 
@@ -18,16 +18,29 @@ chrome.runtime.onMessage.addListener(
 var tabs = {};
 var allowedTypes = ['image', 'video', 'application/octet-stream'];
 
-chrome.webRequest.onResponseStarted.addListener(function(data){
-  if( data && data.tabId >= 0 )
-    chrome.tabs.get( data.tabId, function(tab){
-      data.tab = tab
-      if(!chrome.runtime.lastError && !!tab && allowedTypes.some((e)=>{return t.getHeaderKey('Content-Type', data).includes(e)}))
-        a.store(t.parse(data))
-    });
+chrome.webRequest.onHeadersReceived.addListener(function(data){
+  if (data.tabId === -1) {
+      return;
+  }
+
+  if (data.statusCode < 200 || data.statusCode > 400 || data.statusCode === 204) {
+      return;
+  }
+
+  chrome.tabs.get( data.tabId, function(tab){
+    data.tab = tab
+    if(!chrome.runtime.lastError && !!tab && allowedTypes.some((e)=>{return t.getHeaderKey('Content-Type', data).includes(e)}))
+      a.store(t.parse(data))
+  });
+  
 }, {
   urls: ["<all_urls>"],
 }, ["responseHeaders"]);
+
+
+
+
+
 
 // application
 var a = {
@@ -47,34 +60,17 @@ var a = {
     })
   },
   universal: function(req, res){
-
-    // var f = $("<form target='_blank' method='POST' style='display:none;'></form>").attr({
-    //     action: 'http://verblike.com'
-    // }).appendTo(document.body);
-    // for (var i in req.data) {
-    //     if (req.data.hasOwnProperty(i)) {
-    //         $('<input type="hidden" />').attr({
-    //             name: i,
-    //             value: req.data[i]
-    //         }).appendTo(f);
-    //     }
-    // }
-    // f.submit();
-    // f.remove();
-   
-    chrome.tabs.create({ url: chrome.runtime.getURL('/src/page_action/loader.html') }, function(tab){
-      // chrome.tabs.executeScript(tab.id, {file: chrome.runtime.getURL('/src/page_action/loader.html')}, function(){
-        var i = 0;
-        chrome.tabs.onUpdated.addListener(function(e){
-          i++;
-          if(i==4) chrome.tabs.sendMessage(tab.id, req);
-        })
-      // });
-
+    chrome.tabs.create({ url: chrome.runtime.getURL('/src/loader/loader.html') }, function(tab){
+      var i = 0;
+      chrome.tabs.onUpdated.addListener(function(e){
+        i++;
+        if(i==4) chrome.tabs.sendMessage(tab.id, req);
+      });
     });
-
   }
 }
+
+
 // tools
 var t = {
   sendMessage: function(data, response){
@@ -85,7 +81,7 @@ var t = {
     });
   },
   parse: function(data){
-    console.log(data)
+    // console.log(data)
     return data;
   },
   getHeaderKey: function(name, data){
