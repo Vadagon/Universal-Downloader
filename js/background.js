@@ -26,7 +26,6 @@ chrome.webRequest.onHeadersReceived.addListener(function(data){
   if (data.statusCode < 200 || data.statusCode > 400 || data.statusCode === 204) {
       return;
   }
-
   chrome.tabs.get( data.tabId, function(tab){
     data.tab = tab
     if(!chrome.runtime.lastError && !!tab && allowedTypes.some((e)=>{return t.getHeaderKey('Content-Type', data).includes(e)}))

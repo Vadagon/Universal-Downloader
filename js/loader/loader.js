@@ -16,7 +16,8 @@ angular.module('main', ["ngMaterial", "material.svgAssetsCache", "ngRoute"])
 .controller('AppCtrl', function($scope,$location) {
 
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-        zipIt(request.data.links)
+        // zipIt(request.data.links)
+        start();
     });
 
     function zipIt(e){
